@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Rocket } from "lucide-react";
+import { Menu, X, BriefcaseBusiness } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-type RoutePath = "/" | "/advance" | "/timesheets" | "/vacation" | "/contact" | "/setup";
+type RoutePath =
+  | "/"
+  | "/advance"
+  | "/timesheets"
+  | "/vacation"
+  | "/contact"
+  | "/setup";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,11 +29,11 @@ const Navbar: React.FC = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: "Home", path: "/" as RoutePath },
-    { name: "Advance Payments", path: "/advance" as RoutePath },
-    { name: "Timesheets", path: "/timesheets" as RoutePath },
-    { name: "Vacation", path: "/vacation" as RoutePath },
-    { name: "Contact", path: "/contact" as RoutePath },
+    { name: "Start", path: "/" as RoutePath },
+    { name: "Vorschuss", path: "/advance" as RoutePath },
+    { name: "Stundenzettel", path: "/timesheets" as RoutePath },
+    { name: "Urlaub", path: "/vacation" as RoutePath },
+    { name: "Kontakt", path: "/contact" as RoutePath },
   ];
 
   return (
@@ -42,14 +48,13 @@ const Navbar: React.FC = () => {
             onClick={() => navigate("/")}
           >
             <div className="bg-primary p-1.5 rounded-lg mr-2">
-              <Rocket className="w-6 h-6 text-white" />
+              <BriefcaseBusiness className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-extrabold tracking-tight text-slate-900">
-              HRStream
+              MitarbeiterApp Pro
             </span>
           </button>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <button
@@ -66,11 +71,10 @@ const Navbar: React.FC = () => {
               onClick={() => navigate("/setup")}
               className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-blue-600 transition-all shadow-lg shadow-primary/20 active:scale-95"
             >
-              Get Started
+              Anfrage senden
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button
               type="button"
@@ -80,17 +84,12 @@ const Navbar: React.FC = () => {
               aria-expanded={isOpen}
               aria-controls={mobileMenuId}
             >
-              {isOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Nav */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -123,7 +122,7 @@ const Navbar: React.FC = () => {
                   }}
                   className="w-full bg-primary text-white px-6 py-4 rounded-xl text-base font-bold text-center"
                 >
-                  Get Started
+                  Anfrage senden
                 </button>
               </div>
             </div>

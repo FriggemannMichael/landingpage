@@ -1,23 +1,14 @@
 import React from "react";
-import { motion } from "motion/react";
-import {
-  Calendar,
-  Clock,
-  UserCheck,
-  FileText,
-  ChevronLeft,
-  ChevronRight,
-  Plus,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 
 const Vacation: React.FC = () => {
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   const leaveTypes = [
-    { name: "Annual Leave", balance: "12 days", color: "bg-primary" },
-    { name: "Sick Leave", balance: "5 days", color: "bg-rose-500" },
-    { name: "Personal Leave", balance: "2 days", color: "bg-amber-500" },
+    { name: "Bezahlter Urlaub", balance: "12 Tage", color: "bg-primary" },
+    { name: "Sonderurlaub", balance: "3 Anträge", color: "bg-rose-500" },
+    { name: "Freizeitausgleich", balance: "2 Anträge", color: "bg-amber-500" },
   ];
 
   return (
@@ -26,22 +17,22 @@ const Vacation: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-10">
           <div>
             <h1 className="text-3xl font-bold text-slate-900 mb-2">
-              Vacation & Leave
+              Digitale Urlaubsanträge
             </h1>
             <p className="text-slate-500">
-              Plan your time off and track your leave balances.
+              Urlaub, Sonderurlaub und Freizeitausgleich direkt im selben
+              Produkt beantragen.
             </p>
           </div>
           <button className="flex items-center px-6 py-3 bg-primary text-white rounded-2xl text-sm font-bold hover:bg-blue-600 transition-all shadow-lg shadow-primary/20 mt-6 md:mt-0">
-            <Plus className="w-5 h-5 mr-2" /> Request Leave
+            <Plus className="w-5 h-5 mr-2" /> Antrag erstellen
           </button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column: Balances & Requests */}
           <div className="lg:col-span-1 space-y-8">
             <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-6">Your Balances</h3>
+              <h3 className="font-bold text-slate-900 mb-6">Antragsarten</h3>
               <div className="space-y-6">
                 {leaveTypes.map((type, i) => (
                   <div key={i}>
@@ -67,23 +58,23 @@ const Vacation: React.FC = () => {
             </div>
 
             <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-6">Recent Requests</h3>
+              <h3 className="font-bold text-slate-900 mb-6">Beispielanträge</h3>
               <div className="space-y-6">
                 {[
                   {
-                    date: "Oct 12 - Oct 15",
-                    type: "Annual Leave",
-                    status: "Approved",
+                    date: "12.10 - 15.10",
+                    type: "Bezahlter Urlaub",
+                    status: "Versendet",
                   },
                   {
-                    date: "Sep 05 - Sep 06",
-                    type: "Sick Leave",
-                    status: "Approved",
+                    date: "05.09 - 06.09",
+                    type: "Sonderurlaub",
+                    status: "Versendet",
                   },
                   {
-                    date: "Aug 20 - Aug 20",
-                    type: "Personal",
-                    status: "Rejected",
+                    date: "20.08 - 20.08",
+                    type: "Freizeitausgleich",
+                    status: "Entwurf",
                   },
                 ].map((req, i) => (
                   <div key={i} className="flex items-center justify-between">
@@ -95,7 +86,7 @@ const Vacation: React.FC = () => {
                     </div>
                     <span
                       className={`text-[10px] font-bold px-2 py-1 rounded-full ${
-                        req.status === "Approved"
+                        req.status === "Versendet"
                           ? "bg-emerald-50 text-emerald-600"
                           : "bg-rose-50 text-rose-600"
                       }`}
@@ -106,17 +97,16 @@ const Vacation: React.FC = () => {
                 ))}
               </div>
               <button className="w-full mt-8 py-3 text-sm font-bold text-primary hover:bg-primary/5 rounded-xl transition-colors">
-                View History
+                PDF-Workflow ansehen
               </button>
             </div>
           </div>
 
-          {/* Right Column: Calendar */}
           <div className="lg:col-span-2">
             <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm h-full">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-xl font-bold text-slate-900">
-                  October 2025
+                  Beispiel Monat
                 </h3>
                 <div className="flex space-x-2">
                   <button className="p-2 hover:bg-slate-50 rounded-lg transition-colors border border-slate-100">
@@ -140,7 +130,6 @@ const Vacation: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-7 gap-2">
-                {/* Empty cells for padding */}
                 {Array.from({ length: 2 }).map((_, i) => (
                   <div key={`empty-${i}`} className="aspect-square" />
                 ))}
@@ -171,19 +160,19 @@ const Vacation: React.FC = () => {
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-primary rounded-full mr-3" />
                   <span className="text-xs font-bold text-slate-600">
-                    Annual Leave
+                    Bezahlter Urlaub
                   </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-rose-500 rounded-full mr-3" />
                   <span className="text-xs font-bold text-slate-600">
-                    Sick Leave
+                    Sonderurlaub
                   </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-amber-500 rounded-full mr-3" />
                   <span className="text-xs font-bold text-slate-600">
-                    Public Holiday
+                    Freizeitausgleich
                   </span>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Rocket,
+  BriefcaseBusiness,
   Mail,
   Phone,
   MapPin,
@@ -17,13 +17,15 @@ const Footer: React.FC = () => {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center mb-6">
               <div className="bg-primary p-1.5 rounded-lg mr-2">
-                <Rocket className="w-5 h-5 text-white" />
+                <BriefcaseBusiness className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold tracking-tight">HRStream</span>
+              <span className="text-xl font-bold tracking-tight">
+                MitarbeiterApp Pro
+              </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-6">
-              The all-in-one HR operating system for modern companies. Automate
-              your workflows and focus on your people.
+              Die Mitarbeiter-App für digitale Stundenzettel, Urlaubsanträge,
+              Vorschussanträge und dokumentierte Freigabeprozesse.
             </p>
             <div className="flex space-x-4">
               <a
@@ -49,27 +51,27 @@ const Footer: React.FC = () => {
 
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider mb-6">
-              Product
+              Produkt
             </h4>
             <ul className="space-y-4 text-sm text-slate-400">
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Timesheets
+                  Stundenzettel
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Advance Payments
+                  Vorschussanträge
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Vacation & Leave
+                  Urlaubsanträge
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Payroll Integration
+                  Admin-Konfiguration
                 </a>
               </li>
             </ul>
@@ -77,27 +79,27 @@ const Footer: React.FC = () => {
 
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider mb-6">
-              Company
+              Einsatz
             </h4>
             <ul className="space-y-4 text-sm text-slate-400">
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  About Us
+                  Offline-First
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Careers
+                  Mehrsprachig
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Blog
+                  PDF & Versand
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Privacy Policy
+                  Firmenbranding
                 </a>
               </li>
             </ul>
@@ -105,31 +107,31 @@ const Footer: React.FC = () => {
 
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider mb-6">
-              Contact
+              Kontakt
             </h4>
             <ul className="space-y-4 text-sm text-slate-400">
               <li className="flex items-center">
-                <Mail className="w-4 h-4 mr-3" /> support@hrstream.io
+                <Mail className="w-4 h-4 mr-3" /> info@wpdl.de
               </li>
               <li className="flex items-center">
-                <Phone className="w-4 h-4 mr-3" /> +1 (555) 123-4567
+                <Phone className="w-4 h-4 mr-3" /> +49 2561 9792590
               </li>
               <li className="flex items-start">
-                <MapPin className="w-4 h-4 mr-3 mt-1" /> 123 Innovation Way, San
-                Francisco, CA 94105
+                <MapPin className="w-4 h-4 mr-3 mt-1" /> Westfalia
+                Personaldienstleistungen GmbH
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>© 2025 HRStream Inc. All rights reserved.</p>
+          <p>© 2026 MitarbeiterApp Pro. Alle Rechte vorbehalten.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">
-              Terms of Service
+              Impressum
             </a>
             <a href="#" className="hover:text-white transition-colors">
-              Cookie Policy
+              Datenschutz
             </a>
           </div>
         </div>

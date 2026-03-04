@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import {
   Check,
   Building2,
@@ -14,16 +14,15 @@ const Setup: React.FC = () => {
   const [step, setStep] = useState(2);
 
   const steps = [
-    { id: 1, name: "Account", icon: <Users className="w-5 h-5" /> },
-    { id: 2, name: "Company", icon: <Building2 className="w-5 h-5" /> },
-    { id: 3, name: "Billing", icon: <CreditCard className="w-5 h-5" /> },
-    { id: 4, name: "Launch", icon: <Rocket className="w-5 h-5" /> },
+    { id: 1, name: "Kontakt", icon: <Users className="w-5 h-5" /> },
+    { id: 2, name: "Firma", icon: <Building2 className="w-5 h-5" /> },
+    { id: 3, name: "Bedarf", icon: <CreditCard className="w-5 h-5" /> },
+    { id: 4, name: "Start", icon: <Rocket className="w-5 h-5" /> },
   ];
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-slate-50 flex items-center justify-center">
       <div className="max-w-2xl w-full px-4">
-        {/* Progress Bar */}
         <div className="mb-12">
           <div className="flex justify-between items-center relative">
             <div className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -z-10 -translate-y-1/2" />
@@ -54,7 +53,6 @@ const Setup: React.FC = () => {
           </div>
         </div>
 
-        {/* Form Card */}
         <motion.div
           key={step}
           initial={{ opacity: 0, x: 20 }}
@@ -63,10 +61,11 @@ const Setup: React.FC = () => {
         >
           <div className="mb-10">
             <h2 className="text-2xl font-bold text-slate-900 mb-2">
-              Company Details
+              Produktanfrage
             </h2>
             <p className="text-slate-500">
-              Tell us a bit more about your organization.
+              Das Grunddesign bleibt gleich. Hier zeigen wir die angepasste
+              Anfrage-Strecke für dein Produkt.
             </p>
           </div>
 
@@ -74,30 +73,30 @@ const Setup: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-bold text-slate-700 ml-1">
-                  Company Name
+                  Firmenname
                 </label>
                 <input
                   type="text"
-                  placeholder="Acme Corp"
+                  placeholder="Musterfirma GmbH"
                   className="w-full px-5 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all text-slate-900 font-medium"
                 />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold text-slate-700 ml-1">
-                  Industry
+                  Einsatzbereich
                 </label>
                 <select className="w-full px-5 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all text-slate-900 font-medium">
-                  <option>Technology</option>
-                  <option>Healthcare</option>
-                  <option>Finance</option>
-                  <option>Education</option>
+                  <option>Zeitarbeit</option>
+                  <option>Produktion</option>
+                  <option>Logistik</option>
+                  <option>Dienstleistung</option>
                 </select>
               </div>
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-bold text-slate-700 ml-1">
-                Company Size
+                Mitarbeiterzahl
               </label>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {["1-10", "11-50", "51-200", "201+"].map((size) => (
@@ -118,11 +117,11 @@ const Setup: React.FC = () => {
 
             <div className="space-y-2">
               <label className="text-sm font-bold text-slate-700 ml-1">
-                Website (Optional)
+                Gewünschte Anpassung
               </label>
               <input
-                type="url"
-                placeholder="https://acme.com"
+                type="text"
+                placeholder="Branding, Sprachen, Prozesse"
                 className="w-full px-5 py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all text-slate-900 font-medium"
               />
             </div>
@@ -133,23 +132,23 @@ const Setup: React.FC = () => {
                 onClick={() => setStep(Math.max(1, step - 1))}
                 className="flex items-center text-slate-500 font-bold hover:text-slate-700 transition-colors"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" /> Back
+                <ArrowLeft className="w-4 h-4 mr-2" /> Zurück
               </button>
               <button
                 type="button"
                 onClick={() => setStep(Math.min(4, step + 1))}
                 className="flex items-center bg-primary text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-600 transition-all shadow-lg shadow-primary/20 active:scale-95"
               >
-                Continue <ArrowRight className="w-4 h-4 ml-2" />
+                Weiter <ArrowRight className="w-4 h-4 ml-2" />
               </button>
             </div>
           </form>
         </motion.div>
 
         <p className="text-center mt-8 text-slate-400 text-sm">
-          Already have an account?{" "}
+          Du möchtest lieber direkt sprechen?{" "}
           <a href="#" className="text-primary font-bold hover:underline">
-            Sign in
+            Kontakt aufnehmen
           </a>
         </p>
       </div>

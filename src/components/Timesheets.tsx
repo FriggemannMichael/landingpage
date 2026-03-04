@@ -13,66 +13,66 @@ import {
 const Timesheets: React.FC = () => {
   const stats = [
     {
-      label: "Hours Logged",
-      value: "1,240",
-      trend: "+12%",
+      label: "Erfasste Stunden",
+      value: "38.5",
+      trend: "KW 10",
       icon: <Clock className="w-5 h-5" />,
     },
     {
-      label: "Pending Approval",
-      value: "18",
-      trend: "-5%",
+      label: "Offene Blätter",
+      value: "2",
+      trend: "ohne Signatur",
       icon: <AlertCircle className="w-5 h-5" />,
     },
     {
-      label: "Compliance Score",
-      value: "98%",
-      trend: "+2%",
+      label: "Bestätigt",
+      value: "1",
+      trend: "vollständig",
       icon: <CheckCircle2 className="w-5 h-5" />,
     },
     {
-      label: "Overtime Hours",
-      value: "42",
-      trend: "+8%",
+      label: "Kunden",
+      value: "3",
+      trend: "diese Woche",
       icon: <TrendingUp className="w-5 h-5" />,
     },
   ];
 
   const entries = [
     {
-      name: "Alex Rivera",
-      role: "UI Designer",
-      project: "HRStream Redesign",
-      hours: "8.0",
-      status: "Approved",
+      name: "Mitarbeiter",
+      role: "Einsatz A",
+      project: "Kunde 1 / Blatt 1",
+      hours: "8.5",
+      status: "Signiert",
     },
     {
-      name: "Monica Geller",
-      role: "Backend Dev",
-      project: "API Integration",
+      name: "Mitarbeiter",
+      role: "Einsatz B",
+      project: "Kunde 1 / Blatt 2",
       hours: "7.5",
-      status: "Pending",
+      status: "Offen",
     },
     {
-      name: "Ross Geller",
-      role: "Data Scientist",
-      project: "Analytics Engine",
+      name: "Mitarbeiter",
+      role: "Nachtschicht",
+      project: "Kunde 2 / Blatt 1",
       hours: "9.0",
-      status: "Approved",
+      status: "Signiert",
     },
     {
-      name: "Rachel Green",
-      role: "Product Manager",
-      project: "Market Research",
+      name: "Mitarbeiter",
+      role: "Tagschicht",
+      project: "Kunde 3 / Blatt 1",
       hours: "8.0",
-      status: "Pending",
+      status: "Offen",
     },
     {
-      name: "Joey Tribbiani",
-      role: "Quality Assurance",
-      project: "Bug Hunting",
-      hours: "6.5",
-      status: "Rejected",
+      name: "Mitarbeiter",
+      role: "Abwesenheit",
+      project: "Krank / Urlaub im Zettel",
+      hours: "0.0",
+      status: "Hinweis",
     },
   ];
 
@@ -82,23 +82,23 @@ const Timesheets: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-10">
           <div>
             <h1 className="text-3xl font-bold text-slate-900 mb-2">
-              Timesheet Dashboard
+              Digitale Stundenzettel
             </h1>
             <p className="text-slate-500">
-              Manage and approve employee work hours across all projects.
+              Wochenzettel mit mehreren Kunden, Schichtmodellen, Signaturen und
+              PDF-Ausgabe.
             </p>
           </div>
           <div className="flex space-x-3 mt-6 md:mt-0">
             <button className="flex items-center px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-all">
-              <Download className="w-4 h-4 mr-2" /> Export CSV
+              <Download className="w-4 h-4 mr-2" /> PDF exportieren
             </button>
             <button className="flex items-center px-6 py-2.5 bg-primary text-white rounded-xl text-sm font-bold hover:bg-blue-600 transition-all shadow-lg shadow-primary/20">
-              <Plus className="w-4 h-4 mr-2" /> New Entry
+              <Plus className="w-4 h-4 mr-2" /> Neues Blatt
             </button>
           </div>
         </div>
 
-        {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {stats.map((stat, i) => (
             <motion.div
@@ -112,9 +112,7 @@ const Timesheets: React.FC = () => {
                 <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-primary">
                   {stat.icon}
                 </div>
-                <span
-                  className={`text-xs font-bold px-2 py-1 rounded-full ${stat.trend.startsWith("+") ? "bg-emerald-50 text-emerald-600" : "bg-rose-50 text-rose-600"}`}
-                >
+                <span className="text-xs font-bold px-2 py-1 rounded-full bg-emerald-50 text-emerald-600">
                   {stat.trend}
                 </span>
               </div>
@@ -128,21 +126,22 @@ const Timesheets: React.FC = () => {
           ))}
         </div>
 
-        {/* Table Section */}
         <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
           <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <h3 className="font-bold text-slate-900">Recent Entries</h3>
+            <h3 className="font-bold text-slate-900">
+              Beispielhafte Wochenblätter
+            </h3>
             <div className="flex items-center space-x-4">
               <div className="relative">
                 <Filter className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 <select className="pl-10 pr-4 py-2 bg-slate-50 border-none rounded-xl text-sm font-medium text-slate-600 focus:ring-2 focus:ring-primary/20">
-                  <option>All Projects</option>
-                  <option>HRStream Redesign</option>
-                  <option>API Integration</option>
+                  <option>Alle Kunden</option>
+                  <option>Kunde 1</option>
+                  <option>Kunde 2</option>
                 </select>
               </div>
               <div className="text-sm font-medium text-slate-400">
-                Showing 5 of 124
+                Multi-Sheet pro Kalenderwoche
               </div>
             </div>
           </div>
@@ -150,19 +149,16 @@ const Timesheets: React.FC = () => {
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-slate-50/50 text-slate-500 text-xs font-bold uppercase tracking-wider">
-                  <th className="px-6 py-4">Employee</th>
-                  <th className="px-6 py-4">Project</th>
-                  <th className="px-6 py-4">Hours</th>
+                  <th className="px-6 py-4">Mitarbeiter</th>
+                  <th className="px-6 py-4">Einsatz / Kunde</th>
+                  <th className="px-6 py-4">Stunden</th>
                   <th className="px-6 py-4">Status</th>
-                  <th className="px-6 py-4 text-right">Action</th>
+                  <th className="px-6 py-4 text-right">Aktion</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
                 {entries.map((entry, i) => (
-                  <tr
-                    key={i}
-                    className="hover:bg-slate-50/50 transition-colors"
-                  >
+                  <tr key={i} className="hover:bg-slate-50/50 transition-colors">
                     <td className="px-6 py-4">
                       <div className="flex items-center">
                         <div className="w-9 h-9 rounded-full bg-slate-200 mr-3 flex items-center justify-center font-bold text-slate-500 text-xs">
@@ -190,9 +186,9 @@ const Timesheets: React.FC = () => {
                     <td className="px-6 py-4">
                       <span
                         className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold ${
-                          entry.status === "Approved"
+                          entry.status === "Signiert"
                             ? "bg-emerald-50 text-emerald-600"
-                            : entry.status === "Pending"
+                            : entry.status === "Offen"
                               ? "bg-amber-50 text-amber-600"
                               : "bg-rose-50 text-rose-600"
                         }`}
@@ -202,7 +198,7 @@ const Timesheets: React.FC = () => {
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button className="text-slate-400 hover:text-primary transition-colors font-bold text-sm">
-                        Details
+                        Öffnen
                       </button>
                     </td>
                   </tr>
@@ -212,7 +208,7 @@ const Timesheets: React.FC = () => {
           </div>
           <div className="p-6 border-t border-slate-100 text-center">
             <button className="text-primary font-bold text-sm hover:underline">
-              View All Entries
+              Zum kompletten Workflow
             </button>
           </div>
         </div>
