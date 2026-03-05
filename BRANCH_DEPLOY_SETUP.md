@@ -98,6 +98,18 @@ ls -la /var/www/landing
 
 Du solltest Dateien wie `index.html` und `assets/` sehen.
 
+## 8. Rollback ausfuehren (manuell)
+
+In GitHub:
+`Actions -> Rollback Deploy via SSH -> Run workflow`
+
+Bei `target_ref` kannst du angeben:
+- Commit SHA
+- Tag
+- Branch (z. B. `deploy`)
+
+Der Workflow baut genau diesen Stand und deployed ihn wieder nach `DEPLOY_PATH`.
+
 ## Troubleshooting
 
 ### `DEPLOY_HOST missing` oder `DEPLOY_PATH missing`
