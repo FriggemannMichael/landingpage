@@ -149,3 +149,65 @@ Start with review item 1: fix the broken React entrypoint and document the work.
 #### Current Status
 - The primary navigation and FAQ interactions are now semantically interactive and keyboard-accessible.
 - There are still additional accessibility improvements available later (for example form labels/ids and reduced-motion support), but the most obvious semantic issues from the review are addressed.
+
+## 2026-03-05
+
+### Redesign: Single Landingpage Without Images
+
+#### Goal
+- Replace the previous multi-page structure and mismatched visuals with one cohesive landingpage focused on product value.
+- Remove image-dependent sections and keep a clean, conversion-oriented UI.
+
+#### Changes Made
+- Simplified app structure to a single-page setup in `src/App.tsx`.
+- Removed unused page components and preview-only components:
+- `AdvancePayments.tsx`
+- `Timesheets.tsx`
+- `Vacation.tsx`
+- `Setup.tsx`
+- `Contact.tsx`
+- `AppMockupStrip.tsx`
+- Rebuilt `LandingPage.tsx` from scratch as a complete no-image redesign:
+- Strong hero with value proposition
+- KPI/value strip
+- Feature pillars (Stundenzettel, Urlaub, Vorschuss)
+- Process flow section (Erfassen, Bestaetigen, Weitergeben)
+- Conversion CTA section
+- Refactored `Navbar.tsx` to anchor-based navigation (`#start`, `#funktionen`, etc.) and updated styling for dark hero contrast.
+- Updated `Footer.tsx` copy to align with target audience and conversion messaging.
+
+#### Content Direction (Conversion)
+- New message emphasizes reduced paperwork, fewer back-and-forth clarifications, and faster operations.
+- Target audience explicitly framed as personel services use-cases (`Personaldienstleister`).
+- CTA wording strengthened (`Kostenlose Demo sichern`, `Demo sichern`).
+
+#### Verification
+- `npm run build` passed on 2026-03-05 after redesign and copy updates.
+- Verified no `img` usage remains in `src/components`.
+
+#### Current Status
+- Landingpage is now fully image-free, visually coherent, and conversion-focused.
+- Ready for next iteration on tone (du/Sie), legal footer links, and final production copy.
+
+### Follow-up 5: Own API Endpoint for Demo Form
+
+#### Goal
+- Remove third-party form forwarding and use an own backend endpoint that can run on a small mail server.
+
+#### Changes Made
+- Added SMTP API server at `server/index.ts` using Express + Nodemailer.
+- New endpoints:
+- `GET /api/health`
+- `POST /api/demo`
+- Added input validation for `name`, `email`, and `targetGroup` (`Handwerk` or `Zeitarbeit`).
+- Added mail delivery via SMTP env configuration (`SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_TO`, `MAIL_FROM`).
+- Updated landing form submission from FormSubmit to internal `/api/demo` endpoint.
+- Added Vite dev proxy for `/api` in `vite.config.ts`.
+- Added scripts in `package.json`:
+- `dev:api`
+- `start:api`
+- Added `.env.example` and setup instructions in `README.md`.
+
+#### Verification Results
+- `npm run lint` passed on 2026-03-05 after API integration.
+- `npm run build` passed on 2026-03-05 after API integration.
