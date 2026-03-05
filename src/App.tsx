@@ -1,10 +1,11 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LandingPage from "./components/LandingPage";
-import Impressum from "./pages/Impressum";
-import Datenschutz from "./pages/Datenschutz";
+
+const Impressum = lazy(() => import("./pages/Impressum"));
+const Datenschutz = lazy(() => import("./pages/Datenschutz"));
 
 const App: React.FC = () => {
   return (
@@ -17,11 +18,13 @@ const App: React.FC = () => {
       </a>
       <Navbar />
       <main id="main-content" className="flex-grow">
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/impressum" element={<Impressum />} />
-          <Route path="/datenschutz" element={<Datenschutz />} />
-        </Routes>
+        <Suspense fallback={<div className="sr-only">Lade Seite...</div>}>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/impressum" element={<Impressum />} />
+            <Route path="/datenschutz" element={<Datenschutz />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
     </div>
