@@ -193,28 +193,6 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="bg-slate-900 border-b border-white/10 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs text-slate-400 font-bold tracking-[0.18em] uppercase mb-5">Vertrauen von Teams aus Zeitarbeit und Handwerk</p>
-          <div className="flex justify-center">
-            <a
-              href="https://wpdl.de"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Zur Website von Westfalia Personaldienstleistungen GmbH"
-              className="w-full max-w-md rounded-2xl border border-white/15 bg-white p-5 flex items-center justify-center hover:border-cyan-300/60 hover:shadow-[0_8px_24px_rgba(6,182,212,0.2)] transition-all"
-            >
-              <img
-                src="/img/logo-westfalia.png"
-                alt="Westfalia Personaldienstleistungen GmbH"
-                className="h-12 md:h-14 w-auto object-contain"
-                loading="lazy"
-              />
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section className="bg-slate-900 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
