@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X, BriefcaseBusiness } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-type RoutePath =
-  | "/"
-  | "/advance"
-  | "/timesheets"
-  | "/vacation"
-  | "/contact"
-  | "/setup";
+const links = [
+  { name: "Start", href: "/#start" },
+  { name: "Funktionen", href: "/#funktionen" },
+  { name: "Preise", href: "/#preise" },
+  { name: "Kontakt", href: "/#kontakt" },
+];
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  const mobileMenuId = "primary-navigation-mobile";
+  const isHome = location.pathname === "/";
+  const showSolidStyle = !isHome || scrolled;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -24,69 +23,56 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
-
-  const navLinks = [
-    { name: "Start", path: "/" as RoutePath },
-    { name: "Vorschuss", path: "/advance" as RoutePath },
-    { name: "Stundenzettel", path: "/timesheets" as RoutePath },
-    { name: "Urlaub", path: "/vacation" as RoutePath },
-    { name: "Kontakt", path: "/contact" as RoutePath },
-  ];
-
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        showSolidStyle ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <button
-            type="button"
-            className="flex items-center cursor-pointer"
-            onClick={() => navigate("/")}
-          >
+          <a href="/#start" className="flex items-center">
             <div className="bg-primary p-1.5 rounded-lg mr-2">
               <BriefcaseBusiness className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-extrabold tracking-tight text-slate-900">
+            <span
+              className={`text-2xl font-extrabold tracking-tight ${
+                showSolidStyle ? "text-slate-900" : "text-white"
+              }`}
+            >
               MitarbeiterApp Pro
             </span>
-          </button>
+          </a>
 
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <button
-                type="button"
-                key={link.path}
-                onClick={() => navigate(link.path)}
-                className={`text-sm font-semibold transition-colors hover:text-primary ${location.pathname === link.path ? "text-primary" : "text-slate-600"}`}
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-semibold transition-colors ${
+                  showSolidStyle ? "text-slate-600 hover:text-primary" : "text-slate-100 hover:text-cyan-300"
+                }`}
               >
                 {link.name}
-              </button>
+              </a>
             ))}
-            <button
-              type="button"
-              onClick={() => navigate("/setup")}
-              className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-blue-600 transition-all shadow-lg shadow-primary/20 active:scale-95"
+            <a
+              href="/#kontakt"
+              className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-blue-600 transition-colors"
             >
-              Anfrage senden
-            </button>
+              Demo sichern
+            </a>
           </div>
 
-          <div className="md:hidden flex items-center">
-            <button
-              type="button"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-slate-900 p-2"
-              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={isOpen}
-              aria-controls={mobileMenuId}
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="md:hidden text-slate-900 p-2"
+            aria-label={isOpen ? "Navigationsmenü schließen" : "Navigationsmenü öffnen"}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
 
@@ -96,35 +82,26 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            id={mobileMenuId}
             className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
           >
-            <div className="px-4 pt-2 pb-6 space-y-1">
-              {navLinks.map((link) => (
-                <button
-                  type="button"
-                  key={link.path}
-                  onClick={() => {
-                    navigate(link.path);
-                    setIsOpen(false);
-                  }}
-                  className="block w-full text-left px-3 py-4 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-primary rounded-xl"
+            <div className="px-4 py-4 space-y-1">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-primary rounded-xl"
                 >
                   {link.name}
-                </button>
+                </a>
               ))}
-              <div className="pt-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigate("/setup");
-                    setIsOpen(false);
-                  }}
-                  className="w-full bg-primary text-white px-6 py-4 rounded-xl text-base font-bold text-center"
-                >
-                  Anfrage senden
-                </button>
-              </div>
+              <a
+                href="/#kontakt"
+                onClick={() => setIsOpen(false)}
+                className="block mt-3 bg-primary text-white px-6 py-3 rounded-xl text-base font-bold text-center"
+              >
+                Demo sichern
+              </a>
             </div>
           </motion.div>
         )}
