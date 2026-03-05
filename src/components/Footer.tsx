@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
                 MitarbeiterApp Pro
               </span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
+            <p className="text-slate-300 text-sm leading-relaxed">
               Digitale Stundenzettel, Urlaubsanträge und Vorschussanträge für
               schnellere Abläufe in der Personaldienstleistung.
             </p>
@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
             <h4 className="text-sm font-bold uppercase tracking-wider mb-4">
               Schnellnavigation
             </h4>
-            <ul className="space-y-3 text-sm text-slate-400">
+            <ul className="space-y-3 text-sm text-slate-300">
               <li>
                 <a
                   href="/#funktionen"
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
             <h4 className="text-sm font-bold uppercase tracking-wider mb-4">
               Kontakt
             </h4>
-            <ul className="space-y-3 text-sm text-slate-400">
+            <ul className="space-y-3 text-sm text-slate-300">
               <li className="flex items-center">
                 <Mail className="w-4 h-4 mr-2" /> info@mitarbeiterapp.site
               </li>
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-6 text-xs text-slate-500 flex flex-col md:flex-row items-center justify-between gap-2">
+        <div className="border-t border-slate-800 pt-6 text-xs text-slate-400 flex flex-col md:flex-row items-center justify-between gap-2">
           <p>© 2026 MitarbeiterApp Pro. Alle Rechte vorbehalten.</p>
           <div className="flex gap-5">
             <a href="/impressum" className="hover:text-white transition-colors">

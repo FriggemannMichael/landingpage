@@ -162,7 +162,7 @@ const LandingPage: React.FC = () => {
                   Ablauf in 2 Minuten
                 </a>
               </div>
-              <p className="mt-3 text-xs text-slate-400">
+              <p className="mt-3 text-xs text-slate-300">
                 Keine Verpflichtung • In 15 Minuten vorgestellt • DSGVO-konform in Deutschland
               </p>
             </motion.div>
@@ -199,7 +199,7 @@ const LandingPage: React.FC = () => {
             {values.map((item) => (
               <div key={item.label} className="rounded-2xl border border-white/10 bg-slate-950 px-4 py-4">
                 <div className="text-2xl font-extrabold text-white">{item.value}</div>
-                <div className="text-xs font-bold uppercase tracking-wide text-slate-400">{item.label}</div>
+                <div className="text-xs font-bold uppercase tracking-wide text-slate-300">{item.label}</div>
               </div>
             ))}
           </div>
@@ -356,7 +356,7 @@ const LandingPage: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Vor- und Nachname"
-                  className="w-full rounded-xl border border-white/20 bg-slate-900/70 px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-300/40"
+                  className="w-full rounded-xl border border-white/20 bg-slate-900/70 px-4 py-3 text-sm text-white placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/40"
                 />
               </div>
 
@@ -370,7 +370,7 @@ const LandingPage: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@firma.de"
-                  className="w-full rounded-xl border border-white/20 bg-slate-900/70 px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-300/40"
+                  className="w-full rounded-xl border border-white/20 bg-slate-900/70 px-4 py-3 text-sm text-white placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/40"
                 />
               </div>
 
@@ -418,10 +418,10 @@ const LandingPage: React.FC = () => {
               </button>
             </div>
 
-            <p className="mt-3 text-xs text-slate-400">
+            <p className="mt-3 text-xs text-slate-300">
               Ihre Daten werden vertraulich behandelt. Keine Weitergabe an Dritte.
             </p>
-            <p className="mt-2 text-xs text-slate-400">
+            <p className="mt-2 text-xs text-slate-300">
               Mit dem Absenden Ihrer Anfrage erklären Sie sich mit der Verarbeitung Ihrer Daten zur Bearbeitung Ihres Anliegens einverstanden.
             </p>
 
