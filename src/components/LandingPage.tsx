@@ -77,7 +77,11 @@ const pains = [
 const LandingPage: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [targetGroup, setTargetGroup] = useState("");
+  const [notes, setNotes] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [selectedRequestType, setSelectedRequestType] = useState<"demo" | "contact" | "callback">("demo");
   const [status, setStatus] = useState<"idle" | "error" | "sending" | "sent">("idle");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -90,9 +94,19 @@ const LandingPage: React.FC = () => {
         : submitter?.value === "contact"
           ? "contact"
           : "demo";
+    setSelectedRequestType(requestType);
+
+    setErrorMessage("");
 
     if (!name.trim() || !email.trim() || !targetGroup) {
       setStatus("error");
+      setErrorMessage("Bitte Name, E-Mail-Adresse und Zielgruppe ausfüllen.");
+      return;
+    }
+
+    if (requestType === "callback" && !phone.trim()) {
+      setStatus("error");
+      setErrorMessage("Für einen Rückruf benötigen wir Ihre Telefonnummer.");
       return;
     }
 
@@ -106,7 +120,9 @@ const LandingPage: React.FC = () => {
         body: JSON.stringify({
           name,
           email,
+          phone,
           targetGroup,
+          notes,
           requestType,
         }),
       });
@@ -118,9 +134,16 @@ const LandingPage: React.FC = () => {
       setStatus("sent");
       setName("");
       setEmail("");
+      setPhone("");
       setTargetGroup("");
+      setNotes("");
+
+      if (requestType === "demo") {
+        window.location.href = "https://demo.mitarbeiterapp.site";
+      }
     } catch {
       setStatus("error");
+      setErrorMessage("Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut.");
     }
   };
 
@@ -389,12 +412,46 @@ const LandingPage: React.FC = () => {
                   <option value="Zeitarbeit">Zeitarbeit</option>
                 </select>
               </div>
+
+              <div>
+                <label htmlFor="demo-phone" className="block text-sm font-bold text-slate-100 mb-2">
+                  Telefonnummer
+                </label>
+                <input
+                  id="demo-phone"
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="+49 170 1234567"
+                  className={`w-full rounded-xl border bg-slate-900/70 px-4 py-3 text-sm text-white placeholder:text-slate-300 focus:outline-none focus:ring-2 ${
+                    selectedRequestType === "callback" && !phone.trim()
+                      ? "border-red-400 focus:ring-red-300/40"
+                      : "border-white/20 focus:ring-cyan-300/40"
+                  }`}
+                />
+                <p className="mt-2 text-xs text-slate-300">Pflichtfeld nur bei "Rückruf anfordern".</p>
+              </div>
+
+              <div className="md:col-span-2">
+                <label htmlFor="demo-notes" className="block text-sm font-bold text-slate-100 mb-2">
+                  Notizen (optional)
+                </label>
+                <textarea
+                  id="demo-notes"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  placeholder="Z. B. bevorzugte Rückrufzeit, Fragen oder kurze Infos zu Ihrem Anliegen"
+                  rows={4}
+                  className="w-full rounded-xl border border-white/20 bg-slate-900/70 px-4 py-3 text-sm text-white placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/40"
+                />
+              </div>
             </div>
 
             <div className="mt-5 flex flex-col sm:flex-row sm:items-center gap-3">
               <button
                 type="submit"
                 value="demo"
+                onClick={() => setSelectedRequestType("demo")}
                 disabled={status === "sending"}
                 className="inline-flex justify-center rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-white hover:bg-blue-600 transition-colors disabled:opacity-60"
               >
@@ -403,6 +460,7 @@ const LandingPage: React.FC = () => {
               <button
                 type="submit"
                 value="contact"
+                onClick={() => setSelectedRequestType("contact")}
                 disabled={status === "sending"}
                 className="inline-flex justify-center rounded-full border border-white/30 bg-white/10 px-8 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition-colors disabled:opacity-60"
               >
@@ -411,6 +469,7 @@ const LandingPage: React.FC = () => {
               <button
                 type="submit"
                 value="callback"
+                onClick={() => setSelectedRequestType("callback")}
                 disabled={status === "sending"}
                 className="inline-flex justify-center rounded-full bg-white px-8 py-3.5 text-sm font-bold text-slate-900 hover:bg-slate-100 transition-colors disabled:opacity-60"
               >
@@ -427,7 +486,7 @@ const LandingPage: React.FC = () => {
 
             {status === "error" && (
               <p className="mt-4 text-sm font-semibold text-amber-300">
-                Bitte Name, E-Mail-Adresse und Zielgruppe ausfüllen. Falls das Senden fehlschlägt, versuchen Sie es bitte erneut.
+                {errorMessage || "Bitte prüfen Sie Ihre Eingaben und versuchen Sie es erneut."}
               </p>
             )}
             {status === "sent" && (

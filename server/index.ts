@@ -10,7 +10,9 @@ app.use(express.json({ limit: "64kb" }));
 type DemoPayload = {
   name?: string;
   email?: string;
+  phone?: string;
   targetGroup?: string;
+  notes?: string;
   requestType?: string;
 };
 
@@ -52,7 +54,9 @@ app.post("/api/demo", async (req: Request, res: Response) => {
   const body = (req.body || {}) as DemoPayload;
   const name = body.name?.trim();
   const email = body.email?.trim();
+  const phone = body.phone?.trim();
   const targetGroup = body.targetGroup?.trim();
+  const notes = body.notes?.trim();
   const requestType = body.requestType?.trim() || "demo";
 
   if (!name || !email || !targetGroup) {
@@ -66,6 +70,9 @@ app.post("/api/demo", async (req: Request, res: Response) => {
   }
   if (!allowedRequestTypes.has(requestType)) {
     return res.status(400).json({ ok: false, error: "invalid_request_type" });
+  }
+  if (requestType === "callback" && !phone) {
+    return res.status(400).json({ ok: false, error: "missing_phone_for_callback" });
   }
 
   const requestTypeLabel =
@@ -86,16 +93,20 @@ app.post("/api/demo", async (req: Request, res: Response) => {
     "",
     `Name: ${name}`,
     `E-Mail: ${email}`,
+    `Telefon: ${phone || "-"}`,
     `Zielgruppe: ${targetGroup}`,
     `Anfragetyp: ${requestTypeLabel}`,
+    `Notizen: ${notes || "-"}`,
   ].join("\n");
 
   const html = `
     <h2>${requestTitle}</h2>
     <p><strong>Name:</strong> ${name}</p>
     <p><strong>E-Mail:</strong> ${email}</p>
+    <p><strong>Telefon:</strong> ${phone || "-"}</p>
     <p><strong>Zielgruppe:</strong> ${targetGroup}</p>
     <p><strong>Anfragetyp:</strong> ${requestTypeLabel}</p>
+    <p><strong>Notizen:</strong> ${notes || "-"}</p>
   `;
 
   try {
