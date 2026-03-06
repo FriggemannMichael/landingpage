@@ -15,6 +15,7 @@ import {
   Server,
   BadgeCheck,
 } from "lucide-react";
+import { useSeo } from "../hooks/useSeo";
 
 const pillars = [
   {
@@ -75,6 +76,13 @@ const pains = [
 ];
 
 const LandingPage: React.FC = () => {
+  useSeo({
+    title: "MitarbeiterApp Pro - Digitale Zeiterfassung für Unternehmen",
+    description:
+      "MitarbeiterApp Pro: Digitale Stundenzettel, Urlaubsanträge und Vorschüsse mit Unterschrift und QR-Code für Personaldienstleister und Handwerk.",
+    canonicalPath: "/",
+  });
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");

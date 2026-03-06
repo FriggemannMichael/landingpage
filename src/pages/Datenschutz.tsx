@@ -1,7 +1,15 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
+import { useSeo } from "../hooks/useSeo";
 
 const Datenschutz: React.FC = () => {
+  useSeo({
+    title: "Datenschutzerklärung | MitarbeiterApp Pro",
+    description:
+      "Datenschutzerklärung von MitarbeiterApp Pro mit Informationen zu Datenverarbeitung, Hosting und Betroffenenrechten.",
+    canonicalPath: "/datenschutz",
+  });
+
   return (
     <div className="pt-32 pb-16 bg-slate-50 min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

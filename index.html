@@ -7,7 +7,7 @@
     <meta name="description" content="MitarbeiterApp Pro: Ihre Mitarbeiter erfassen Stunden, Urlaub und Vorschüsse digital. Mit Unterschrift und QR-Code für automatische Erfassung. DSGVO-konform." />
     <meta name="keywords" content="digitale Zeiterfassung, Stundenzettel App, Urlaubsantrag digital, Vorschussantrag, QR-Code Zeiterfassung, Handwerk, Personaldienstleister" />
     <meta name="author" content="MitarbeiterApp Pro" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href="https://mitarbeiterapp.site/" />
     
     <!-- Open Graph -->
@@ -16,6 +16,9 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:url" content="https://mitarbeiterapp.site/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MitarbeiterApp Pro - Digitale Zeiterfassung" />
+    <meta name="twitter:description" content="Digitale Stundenzettel, Urlaub und Vorschuss in einer App für Handwerk und Personaldienstleister." />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -23,6 +26,56 @@
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#0d7bf2" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "MitarbeiterApp Pro",
+            "url": "https://mitarbeiterapp.site/",
+            "email": "info@mitarbeiterapp.site",
+            "telephone": "+49 171 2363977",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Schwarzer Weg 29",
+              "postalCode": "48683",
+              "addressLocality": "Ahaus",
+              "addressCountry": "DE"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "MitarbeiterApp Pro",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Android, iOS, Web",
+            "inLanguage": "de",
+            "description": "Digitale Zeiterfassung mit Stundenzettel, Urlaubsanträgen und Vorschussprozessen für Unternehmen.",
+            "offers": [
+              {
+                "@type": "Offer",
+                "name": "Self-Hosting",
+                "price": "1999",
+                "priceCurrency": "EUR"
+              },
+              {
+                "@type": "Offer",
+                "name": "Managed Hosting",
+                "price": "69",
+                "priceCurrency": "EUR",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "69",
+                  "priceCurrency": "EUR",
+                  "unitText": "MONTH"
+                }
+              }
+            ],
+            "url": "https://mitarbeiterapp.site/"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

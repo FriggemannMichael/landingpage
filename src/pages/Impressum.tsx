@@ -1,7 +1,15 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
+import { useSeo } from "../hooks/useSeo";
 
 const Impressum: React.FC = () => {
+  useSeo({
+    title: "Impressum | MitarbeiterApp Pro",
+    description:
+      "Impressum von MitarbeiterApp Pro mit Anbieterkennzeichnung, Kontaktangaben und rechtlichen Hinweisen.",
+    canonicalPath: "/impressum",
+  });
+
   return (
     <div className="pt-32 pb-16 bg-slate-50 min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
